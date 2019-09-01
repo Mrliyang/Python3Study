@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-# @File     : LoggingTest.py
+# @File     : LoggingTest2.py
 # @Time     : 2019-09-01 13:35
 # @Author   : Leon
 # @Email    : 635685051@qq.com
@@ -10,13 +10,14 @@
 
 
 import logging
+import os
 
 
 class Logger:
     def __init__(self, path, clevel=logging.DEBUG, flevel=logging.DEBUG):
         self.logger = logging.getLogger(path)
         self.logger.setLevel(logging.DEBUG)
-        fmt = logging.Formatter('[%(asctime)s] [%(levelname)s] %(message)s', '%Y-%m-%d %H:%M:%S')
+        fmt = logging.Formatter('[%(asctime)s] - [%(name)s] - [%(levelname)s] - %(message)s', '%Y-%m-%d %H:%M:%S')
 
         # 设置CMD日志
         sh = logging.StreamHandler()
@@ -48,7 +49,8 @@ class Logger:
 
 
 if __name__ == '__main__':
-    log = Logger('myLog.log', logging.ERROR, logging.DEBUG)
+    print("当前文件所属路径：", os.getcwd())
+    log = Logger('logs/myLog2.log', logging.ERROR, logging.DEBUG)
     log.debug('a debug message.')
     log.info('a info message.')
     log.warning('a warning message.')
